@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书列表</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>编号</th>
+        <th>书名</th>
+        <th>价格</th>
+        <th>市场价</th>
+        <th>出版社</th>
+        <th>操作</th>
+    </tr>
+    {% for b in Book_all %}
+    <tr>
+        <td>{{ b.id }}</td>
+        <td>{{ b.title }}</td>
+        <td>{{ b.price }}</td>
+        <td>{{ b.market_price }}</td>
+        <td>{{ b.publish }}</td>
+        <td><a href="update_book/{{ b.id }}">更新</a> ｜ <a href="delete_book?bid={{ b.id }}">删除</a></td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
