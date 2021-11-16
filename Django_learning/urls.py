@@ -21,5 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # 127.0.0.1:8000/index
     path('index', views.index),
-    path('bookstore/', include('bookstore.urls'))
+    path('bookstore/', include('bookstore.urls')),
+    path('user/', include('user.urls')),
+    path('note/', include('note.urls')),
+    path('test_cache', views.test_cache)
 ]

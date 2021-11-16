@@ -7,8 +7,18 @@
 # @Software: PyCharm
 
 
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
+from django.views.decorators.cache import cache_page
+import time
 
 
 def index(request):
     return render(request, 'index.html')
+
+
+@cache_page(120)
+def test_cache(request):
+    time.sleep(3)
+
+    t = time.time()
+    return HttpResponse(f'当前时间戳:{t}')

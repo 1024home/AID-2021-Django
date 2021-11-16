@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# 项目应用
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bookstore'
+    'bookstore',
+    'user',
+    'note',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +77,7 @@ WSGI_APPLICATION = 'Django_learning.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# 数据库
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -129,3 +133,19 @@ STATICFILES_DIRS = (
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# session存储时间（秒）
+SESSION_COOKIE_AGE = 30
+
+# 硬盘缓存
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table',
+        'TIMEOUT': 300,  # 缓存保存时间 单位秒，默认值为300,
+        'OPTIONS': {
+            'MAX_ENTRIES': 300,  # 缓存最大数据条数
+            'CULL_FREQUENCY': 2,  # 缓存条数达到最大值时 删除1/x的缓存数据
+        }
+    }
+}
